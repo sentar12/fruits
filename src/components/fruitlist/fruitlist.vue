@@ -21,13 +21,11 @@
 <script lang="ts">
 import Vue from 'vue';
 import  { fruitService} from '../fruit.service';
-import FruitDetail from '../fruitdetail/fruitdetail.vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
 import  * as wj from "wijmo/wijmo";
 import  *  as wjGrid from "wijmo/wijmo.grid";
 import 'wijmo/wijmo.vue2.grid';
 @Component({
-    components: { FruitDetail }
 })
 export default class FruitList extends Vue { 
   fruits: any;
@@ -51,16 +49,5 @@ formatCountry(s: any, e: any) {
             }
         }
 }
-
- // Consume the grid's row selection event arguments and navigate to the detail route.
-loadDetail(e: wjGrid.CellRangeEventArgs) {
-        // Extract the ID of the data item represented by the selected row.
-        const fruitItemID: any = (this.fruitList.currentItem as FruitItem).id as number;
-
-        // Navigate to the detail route, passing the data item ID as a route parameter via the syntax: ['route name', 'parameter1 value'].
-        // Note that the detail route declaration maps the incoming value via the 'fruit-detail/:id' route definition.
-        // This will result in any value being passed into the parameter1 value will be accessable in the recieving Component or Route Resolver via ActivatedRoute.params['id'].
-        this.router.navigate(['fruit-detail', fruitItemID]);
-    }
 
 </script>

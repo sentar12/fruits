@@ -22,7 +22,7 @@ const routes: RouteConfig[] = [
 const router = new VueRouter({ routes });
 Vue.use(VueRouter);
 @Component({
-  router: router
+  components: {FruitList}
 })
 export default class App extends Vue {
   title: string;
