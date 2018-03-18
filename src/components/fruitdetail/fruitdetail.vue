@@ -50,9 +50,11 @@ import Vue from 'vue';
 import { Component, Emit, Prop, Watch } from 'vue-property-decorator';
 @Component({})
 export default class FruitDetail extends Vue {
-    fruit: any;
+	fruit: any;
+	@Prop() 
+	currentFruitItem: {} | undefined;
 created() {
-
+	console.log(this.currentFruitItem);
   }
 }
 </script>

@@ -2,25 +2,15 @@
   <div id="app">
     <h1>{{ title }}</h1>
     <div class="header-bar"></div>
-    <FruitList></FruitList>
+    <router-view class="view"></router-view>
   </div>
 </template>
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import VueRouter, { RouteConfig } from 'vue-router';
 import FruitList from './fruitlist/fruitlist.vue';
+import FruitDetail from './fruitdetail/fruitdetail.vue';
 
-const PageNotFound = { template: '<div>404</div>' };
-const viewNames = ['completed', 'active', '*'];
-const routes: RouteConfig[] = [
-  { path: '/', redirect: '/heroes' },
-  { path: '/fruits', component: FruitList },
-  { path: '**', component: PageNotFound }
-];
-
-const router = new VueRouter({ routes });
-Vue.use(VueRouter);
 @Component({
   components: {FruitList}
 })
@@ -28,7 +18,7 @@ export default class App extends Vue {
   title: string;
   constructor() {
     super();
-    this.title = 'List View';
+    this.title = 'FEF Reference Application With Vue And Typescript';
   }
 
 }

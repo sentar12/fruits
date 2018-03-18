@@ -5,7 +5,8 @@
   "main": "index.js",
   "sideEffects": false,
   "scripts": {
-    "build": "webpack ",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --inline --hot",
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -27,6 +28,7 @@
   },
   "dependencies": {
     "@bento.ui/bento-ng": "2.0.1",
+    "cross-env": "^5.1.3",
     "axios": "^0.17.1",
     "ng-bootstrap": "^1.6.3",
     "typings": "^1.3.2",

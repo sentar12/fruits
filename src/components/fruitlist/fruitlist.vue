@@ -3,29 +3,25 @@
 <wj-flex-grid
   :items-source="fruits"
   :format-item="formatCountry"
+   :selection-changed ="loadDetail"
    style="height: 500px;margin-top:10px">
   <wj-flex-grid-column binding="common_name" header="Name" format="c0"></wj-flex-grid-column>
   <wj-flex-grid-column binding="species" header="Species" format="c0"></wj-flex-grid-column>
   <wj-flex-grid-column binding="region" header="Region"></wj-flex-grid-column>
   <wj-flex-grid-column header="Image" style="width:100px;height:100px;" binding="ImageURL"></wj-flex-grid-column>
-</wj-flex-grid>  <transition name="fade">
-    <FruitDetail
-      v-if="selectedHero || addingHero"
-      :hero="selectedHero"
-      @unselect="unselect"
-      @heroChanged="heroChanged"></FruitDetail>
-    </transition>
-
+</wj-flex-grid>
 </div>
 </template>
 <script lang="ts">
 import Vue from 'vue';
 import  { fruitService} from '../fruit.service';
+import FruitDetail from '../fruitdetail/fruitdetail.vue';
 import { Component, Prop, Watch } from 'vue-property-decorator';
 import  * as wj from "wijmo/wijmo";
 import  *  as wjGrid from "wijmo/wijmo.grid";
 import 'wijmo/wijmo.vue2.grid';
 @Component({
+     components: { FruitDetail }
 })
 export default class FruitList extends Vue { 
   fruits: any;
@@ -39,7 +35,7 @@ formatCountry(s: any, e: any) {
             var flex = s;
             if (e.panel == flex.cells && flex.columns[e.col].binding === 'ImageURL') {
                 e.cell.innerHTML = wj.format(
-                    '<img src="{ImageURL}">',
+                    '<img src="{ImageURL}"  style="width:100px;height:100px;">',
                     flex.rows[e.row].dataItem);
             }
              if (e.panel == flex.cells && flex.columns[e.col].binding === 'common_name') {
@@ -48,6 +44,14 @@ formatCountry(s: any, e: any) {
                     flex.rows[e.row].dataItem);
             }
         }
+
+loadDetail (event: any) {
+    let id = event.selectedItems[0].id;
+    this.$router.push({ path: `/fruit/${id}`, props: {currentFruitItem:  event.selectedItems[0]} });
+// https://stackoverflow.com/questions/45151810/passing-props-with-programmatic-navigation-vue-js
 }
+
+}
+
 
 </script>
