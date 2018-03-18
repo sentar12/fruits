@@ -47,8 +47,7 @@ formatCountry(s: any, e: any) {
 
 loadDetail (event: any) {
     let id = event.selectedItems[0].id;
-    this.$router.push({ path: `/fruit/${id}`, props: {currentFruitItem:  event.selectedItems[0]} });
-// https://stackoverflow.com/questions/45151810/passing-props-with-programmatic-navigation-vue-js
+    this.$router.push({ path: `/fruit/${id}`, params: {event.selectedItems[0]}});
 }
 
 }

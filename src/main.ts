@@ -13,7 +13,7 @@ const viewNames = ['completed', 'active', '*'];
 const routes: RouteConfig[] = [
   { path: '/', redirect: '/fruits' },
   { path: '/fruits', component: FruitList },
-  { path: '/fruit/:id', component: FruitDetail, props: {currentFruitItem: {}} },
+  { path: '/fruit/:id', component: FruitDetail, props: true },
   { path: '**', component: PageNotFound }
 ];
 
