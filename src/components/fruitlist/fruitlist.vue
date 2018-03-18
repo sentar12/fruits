@@ -47,10 +47,7 @@ formatCountry(s: any, e: any) {
 
 loadDetail (event: any) {
     let id = event.selectedItems[0].id;
-    this.$router.push({ path: `/fruit/${id}`, params: {event.selectedItems[0]}});
+    this.$router.push({ path: `/fruit/${id}` });
 }
-
 }
-
-
 </script>

@@ -47,14 +47,19 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
+import  { fruitService} from '../fruit.service';
 import { Component, Emit, Prop, Watch } from 'vue-property-decorator';
 @Component({})
 export default class FruitDetail extends Vue {
-	fruit: any;
+	fruitsList: any;
 	@Prop() 
 	currentFruitItem: {} | undefined;
 created() {
-	console.log(this.currentFruitItem);
-  }
+	this.fruitsList = fruitService.getFruits().fruit;
+	var self = this;
+	this.currentFruitItem = this.fruitsList.find((element: any) => {
+    return parseInt(self.$route.params.id) === element.id
+  });
+}
 }
 </script>
