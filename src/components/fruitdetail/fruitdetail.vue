@@ -56,7 +56,7 @@ export default class FruitDetail extends Vue {
 	currentFruitItem: {} | undefined;
 created() {
 	this.fruitsList = fruitService.getFruits().fruit;
-	var self = this;
+	let self = this;
 	this.currentFruitItem = this.fruitsList.find((element: any) => {
     return parseInt(self.$route.params.id) === element.id
   });
